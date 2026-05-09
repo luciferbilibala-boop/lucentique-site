@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://luciferbilibala-boop.github.io/lucentique-site',
+  site: 'https://luciferbilibala-boop.github.io',
   base: '/lucentique-site/',
   srcDir: 'src',
   publicDir: 'public',
