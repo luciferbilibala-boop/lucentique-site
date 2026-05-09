@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import List from '../../layouts/List.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const entries = await getCollection('b_class', ({ data }) => data.published === true);
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<List
+  section="b"
+  title="少女心中有一个老灵魂"
+  description="分享艺术、书籍、审美与古典生活方式。"
+>
+  {entries.map((entry) => <ArticleCard entry={entry} section="b" />)}
+</List>

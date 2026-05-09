@@ -1,0 +1,42 @@
+---
+export interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+  wide?: boolean;
+}
+
+const { src, alt = '', caption, wide = false } = Astro.props;
+---
+
+<figure class:list={['figure', { 'figure--wide': wide }]}>
+  <div class="figure-frame">
+    <img src={src} alt={alt} loading="lazy" />
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .figure {
+    margin: var(--space-lg) 0;
+    text-align: center;
+  }
+
+  .figure-frame {
+    background: var(--color-bg);
+  }
+
+  .figure-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-top: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+</style>

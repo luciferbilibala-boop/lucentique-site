@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../layouts/Page.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const base = import.meta.env.BASE_URL || '/';
+
+const aEntries = await getCollection('a_class', ({ data }) => data.published === true);
+const bEntries = await getCollection('b_class', ({ data }) => data.published === true);
+
+const allEntries = [...aEntries, ...bEntries]
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const latest = allEntries.slice(0, 6);
+---
+
+<Page>
+  <section class="container hero">
+    <h1 class="hero-title">LUCENTIQUE</h1>
+    <p class="hero-subtitle">古籍藏</p>
+    <p class="hero-text">每一本书都是一个世界。</p>
+  </section>
+
+  <section class="container">
+    <div class="section-header">
+      <h2 class="section-title">最新文章</h2>
+    </div>
+
+    {
+      latest.length === 0 ? (
+        <p class="empty">文章即将上线。</p>
+      ) : (
+        <div class="home-grid">
+          {latest.map((entry) => {
+            const section = entry.collection === 'a_class' ? 'a' : 'b';
+            return <ArticleCard entry={entry} section={section} />;
+          })}
+        </div>
+      )
+    }
+  </section>
+
+  <section class="container sections-nav">
+    <a href={`${base}a/`} class="section-link">
+      <span class="section-label">藏品</span>
+      <span class="section-arrow">&rarr;</span>
+    </a>
+    <a href={`${base}b/`} class="section-link">
+      <span class="section-label">少女心中有一个老灵魂</span>
+      <span class="section-arrow">&rarr;</span>
+    </a>
+  </section>
+</Page>
+
+<style>
+  .hero {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.6rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .home-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .home-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .empty {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    padding: var(--space-lg) 0;
+  }
+
+  .sections-nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .sections-nav {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .section-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border-bottom: none;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+
+  .section-link:hover {
+    background: var(--color-bg);
+    border-bottom: none;
+  }
+
+  .section-arrow {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+  }
+</style>

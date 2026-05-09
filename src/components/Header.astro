@@ -1,0 +1,86 @@
+---
+const base = import.meta.env.BASE_URL || '/';
+---
+
+<header class="site-header">
+  <div class="header-inner container-wide">
+    <a href={base} class="site-brand">
+      <img
+        src={`${base}brand/logo-header.png`}
+        srcset={`${base}brand/logo-header@2x.png 2x`}
+        alt="LUCENTIQUE"
+        class="brand-logo"
+      />
+      <span class="brand-text">LUCENTIQUE<wbr />古籍藏</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href={`${base}a/`}>藏品</a>
+      <span class="nav-sep">·</span>
+      <a href={`${base}b/`}>老灵魂</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .site-brand {
+    display: block;
+    border-bottom: none;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .brand-logo {
+    height: 11px;
+    width: auto;
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+
+  .brand-text {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .site-nav {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+
+  .site-nav a {
+    border-bottom: none;
+    color: var(--color-text-muted);
+  }
+
+  .site-nav a:hover {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+
+  .nav-sep {
+    color: var(--color-border);
+  }
+</style>

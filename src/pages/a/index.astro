@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import List from '../../layouts/List.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const entries = await getCollection('a_class', ({ data }) => data.published === true);
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<List section="a" title="古籍藏品" description="LUCENTIQUE 古籍收藏与在售藏品。">
+  {entries.map((entry) => <ArticleCard entry={entry} section="a" />)}
+</List>

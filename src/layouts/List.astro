@@ -1,0 +1,55 @@
+---
+import Page from './Page.astro';
+
+interface Props {
+  section: 'a' | 'b';
+  title: string;
+  description?: string;
+}
+
+const { section, title, description } = Astro.props;
+---
+
+<Page>
+  <div class="container">
+    <header class="list-header">
+      <h1>{title}</h1>
+      {description && <p class="list-desc">{description}</p>}
+    </header>
+    <div class="list-grid">
+      <slot />
+    </div>
+  </div>
+</Page>
+
+<style>
+  .list-header {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-lg);
+  }
+
+  .list-header h1 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .list-desc {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-top: var(--space-sm);
+  }
+
+  .list-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 640px) {
+    .list-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
