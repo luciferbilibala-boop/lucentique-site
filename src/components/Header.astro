@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL || '/';
 
 <style>
   .site-header {
-    padding: var(--space-lg) 0;
+    padding: 1.6rem 0;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-surface);
     position: sticky;
@@ -34,27 +34,34 @@ const base = import.meta.env.BASE_URL || '/';
   .header-inner {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
   }
 
   .site-brand {
-    display: block;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.9rem;
     border-bottom: none;
     text-decoration: none;
     line-height: 1;
+    min-width: 0;
   }
 
   .brand-logo {
-    height: 11px;
+    height: 28px;
     width: auto;
     display: block;
-    margin-bottom: 0.9rem;
+    flex-shrink: 0;
   }
 
   .brand-text {
     display: block;
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: 1.28rem;
     letter-spacing: 0.04em;
     color: var(--color-text);
     white-space: nowrap;
@@ -67,7 +74,19 @@ const base = import.meta.env.BASE_URL || '/';
     align-items: center;
     gap: 0.6rem;
     flex-shrink: 0;
-    padding-top: 0.15rem;
+  }
+
+  @media (max-width: 520px) {
+    .header-inner {
+      align-items: center;
+      flex-direction: row;
+      gap: var(--space-sm);
+    }
+
+    .site-nav {
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   .site-nav a {
