@@ -4,6 +4,7 @@ import Page from '../layouts/Page.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 
 const base = import.meta.env.BASE_URL || '/';
+const siteUrl = (Astro.site?.href || '').replace(/\/$/, '');
 
 const aEntries = await getCollection('a_class', ({ data }) => data.published === true);
 const bEntries = await getCollection('b_class', ({ data }) => data.published === true);
@@ -12,9 +13,22 @@ const allEntries = [...aEntries, ...bEntries]
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const latest = allEntries.slice(0, 6);
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'LUCENTIQUE 古籍藏',
+  description: '古籍收藏与审美分享',
+  url: `${siteUrl}${import.meta.env.BASE_URL}`,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}${import.meta.env.BASE_URL}search?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
 ---
 
-<Page>
+<Page pageTitle="LUCENTIQUE 古籍藏" pageUrl="/" pageType="website">
   <section class="container hero">
     <h1 class="hero-title">LUCENTIQUE</h1>
     <p class="hero-subtitle">古籍藏</p>
@@ -51,6 +65,8 @@ const latest = allEntries.slice(0, 6);
     </a>
   </section>
 </Page>
+
+<script type="application/ld+json" set:html={JSON.stringify(homeJsonLd)}></script>
 
 <style>
   .hero {

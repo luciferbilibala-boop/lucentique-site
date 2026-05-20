@@ -1,0 +1,101 @@
+---
+interface BaseImage {
+  src: string;
+  caption?: string;
+  description?: string;
+  altText?: string;
+  medium?: string;
+  designer?: string;
+  year?: string;
+  artworkType?: string;
+}
+
+interface Props {
+  section: 'a' | 'b';
+  entry: {
+    id: string;
+    data: {
+      title: string;
+      date: Date;
+      description?: string;
+      enDescription?: string;
+      tags?: string[];
+      cover?: string;
+      coverAltText?: string;
+      gallery?: BaseImage[];
+      author?: string;
+      updatedDate?: Date;
+      period?: string;
+      designers?: string[];
+      canonicalURL?: string;
+    };
+  };
+}
+
+const { section, entry } = Astro.props;
+const { data } = entry;
+const siteUrl = (Astro.site?.href || '').replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const imageBase = siteUrl + basePath;
+const pageUrl = `${siteUrl}${basePath}/${section}/${entry.id}/`;
+const pageDesc = data.enDescription || data.description || '';
+
+function buildArtwork(img: BaseImage) {
+  const obj: Record<string, any> = {
+    '@type': img.artworkType || 'VisualArtwork',
+    name: img.caption || '',
+  };
+  if (img.description) obj.description = img.description;
+  if (img.designer) {
+    obj.creator = { '@type': 'Person', name: img.designer };
+  }
+  if (img.year) obj.dateCreated = img.year;
+  if (img.medium) obj.artMedium = img.medium;
+  if (img.src) obj.image = imageBase + img.src;
+  return obj;
+}
+
+const galleryWithMeta = (data.gallery || []).filter(img => img.medium || img.designer || img.year || img.description);
+const artworks = galleryWithMeta.map(buildArtwork);
+
+// A类: Book
+// B类: Article
+let jsonLd: Record<string, any>;
+
+if (section === 'a') {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Book',
+    name: data.title,
+    url: pageUrl,
+    headline: data.title,
+  };
+  if (pageDesc) jsonLd.description = pageDesc;
+  if (data.cover) jsonLd.image = imageBase + data.cover;
+  if (data.author) {
+    jsonLd.author = { '@type': 'Person', name: data.author };
+  }
+  if (data.date) jsonLd.datePublished = data.date.toISOString().split('T')[0];
+  if (artworks.length > 0) jsonLd.illustration = artworks;
+} else {
+  jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.title,
+    url: pageUrl,
+    datePublished: data.date.toISOString(),
+  };
+  if (pageDesc) jsonLd.description = pageDesc;
+  if (data.cover) jsonLd.image = imageBase + data.cover;
+  if (data.updatedDate) jsonLd.dateModified = data.updatedDate.toISOString();
+  if (data.author) {
+    jsonLd.author = { '@type': 'Person', name: data.author };
+  }
+  if (data.tags?.length) jsonLd.keywords = data.tags.join(', ');
+  if (artworks.length > 0) {
+    jsonLd.about = artworks;
+  }
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>

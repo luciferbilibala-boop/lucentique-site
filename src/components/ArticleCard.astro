@@ -15,7 +15,7 @@ const hasCover = !!entry.data.cover;
   <a href={`${base}${section}/${entry.id}/`} class="card-link">
     {hasCover && (
       <div class="card-image">
-        <img src={`${base}${entry.data.cover.replace(/^\//, '')}`} alt={entry.data.title} loading="lazy" />
+        <img src={`${base}${entry.data.cover.replace(/^\//, '')}`} alt={entry.data.coverAltText || entry.data.title} loading="lazy" />
       </div>
     )}
     <div class="card-body">

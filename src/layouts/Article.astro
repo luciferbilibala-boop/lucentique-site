@@ -1,46 +1,59 @@
 ---
 import Page from './Page.astro';
 import ImageGallery from '../components/ImageGallery.astro';
+import JsonLd from '../components/JsonLd.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   entry: CollectionEntry<'a_class'> | CollectionEntry<'b_class'>;
+  section: 'a' | 'b';
 }
 
-const { entry } = Astro.props;
+const { entry, section } = Astro.props;
+const { data } = entry;
 const base = import.meta.env.BASE_URL || '/';
-const hasGallery = entry.data.gallery && entry.data.gallery.length > 0;
-const coverSrc = entry.data.cover ? `${base}${entry.data.cover.replace(/^\//, '')}` : null;
-const galleryImages = entry.data.gallery?.map(img => ({
+const hasGallery = data.gallery && data.gallery.length > 0;
+const coverSrc = data.cover ? `${base}${data.cover.replace(/^\//, '')}` : null;
+const galleryImages = data.gallery?.map(img => ({
   ...img,
   src: `${base}${img.src.replace(/^\//, '')}`,
 }));
+const pageDesc = data.enDescription || data.description;
 ---
 
-<Page>
+<Page
+  pageTitle={data.title}
+  pageDescription={pageDesc}
+  pageImage={data.cover ? `${base}${data.cover.replace(/^\//, '')}` : undefined}
+  pageUrl={`/${section}/${entry.id}/`}
+  pageType={section === 'a' ? 'book' : 'article'}
+  publishedAt={data.date}
+  updatedAt={data.updatedDate}
+  tags={data.tags}
+>
   <article class="container">
     <header class="article-header">
       <div class="article-meta">
-        <time datetime={entry.data.date.toISOString()}>
-          {entry.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+        <time datetime={data.date.toISOString()}>
+          {data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
         </time>
         {
-          entry.data.tags && entry.data.tags.length > 0 && (
+          data.tags && data.tags.length > 0 && (
             <span class="article-tags">
-              {entry.data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+              {data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
             </span>
           )
         }
       </div>
-      <h1>{entry.data.title}</h1>
-      {entry.data.description && (
-        <p class="article-desc">{entry.data.description}</p>
+      <h1>{data.title}</h1>
+      {data.description && (
+        <p class="article-desc">{data.description}</p>
       )}
     </header>
 
     {coverSrc && (
       <div class="article-cover">
-        <img src={coverSrc} alt={entry.data.title} />
+        <img src={coverSrc} alt={data.coverAltText || data.title} />
       </div>
     )}
 
@@ -56,6 +69,8 @@ const galleryImages = entry.data.gallery?.map(img => ({
     </div>
   </article>
 </Page>
+
+<JsonLd section={section} entry={entry} />
 
 <style>
   .article-header {

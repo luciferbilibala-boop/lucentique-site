@@ -6,12 +6,16 @@ const base = import.meta.env.BASE_URL || '/';
   <div class="header-inner container-wide">
     <a href={base} class="site-brand">
       <img
-        src={`${base}brand/logo-header.png`}
-        srcset={`${base}brand/logo-header@2x.png 2x`}
+        src={`${base}brand/logo-mark-light.png`}
         alt="LUCENTIQUE"
         class="brand-logo"
       />
-      <span class="brand-text">LUCENTIQUE<wbr />古籍藏</span>
+      <span class="brand-copy">
+        <span class="brand-text">
+          <span class="brand-name">LUCENTIQUE</span><span class="brand-cn">古籍藏</span>
+        </span>
+        <span class="brand-tagline">MEET YOUR MOON</span>
+      </span>
     </a>
     <nav class="site-nav" aria-label="主导航">
       <a href={`${base}a/`}>藏品</a>
@@ -44,7 +48,7 @@ const base = import.meta.env.BASE_URL || '/';
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.9rem;
+    gap: 0.72rem;
     border-bottom: none;
     text-decoration: none;
     line-height: 1;
@@ -52,18 +56,47 @@ const base = import.meta.env.BASE_URL || '/';
   }
 
   .brand-logo {
-    height: 28px;
+    height: 38px;
     width: auto;
     display: block;
     flex-shrink: 0;
   }
 
+  .brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+    min-width: 0;
+  }
+
   .brand-text {
-    display: block;
+    display: inline-flex;
+    align-items: baseline;
     font-family: var(--font-serif);
-    font-size: 1.28rem;
-    letter-spacing: 0.04em;
+    font-size: 1rem;
+    letter-spacing: 0;
     color: var(--color-text);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand-name {
+    letter-spacing: 0.16em;
+  }
+
+  .brand-cn {
+    font-size: 0.9em;
+    letter-spacing: 0.04em;
+    margin-left: 0.12rem;
+  }
+
+  .brand-tagline {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.42rem;
+    letter-spacing: 0.48em;
+    color: #b69b5c;
+    line-height: 1;
     white-space: nowrap;
   }
 
@@ -86,6 +119,15 @@ const base = import.meta.env.BASE_URL || '/';
     .site-nav {
       width: 100%;
       justify-content: center;
+    }
+
+    .brand-text {
+      font-size: 0.9rem;
+    }
+
+    .brand-tagline {
+      font-size: 0.38rem;
+      letter-spacing: 0.36em;
     }
   }
 

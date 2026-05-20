@@ -1,0 +1,50 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: 'article' | 'book' | 'website';
+  publishedAt?: Date;
+  updatedAt?: Date;
+  tags?: string[];
+}
+
+const {
+  title,
+  description,
+  image,
+  url,
+  type = 'website',
+  publishedAt,
+  updatedAt,
+  tags,
+} = Astro.props;
+
+const siteUrl = (Astro.site?.href || '').replace(/\/$/, '');
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fullUrl = url ? (url.startsWith('http') ? url : `${siteUrl}${basePath}${url}`) : '';
+const fullImage = image ? (image.startsWith('http') ? image : `${siteUrl}${basePath}${image}`) : '';
+const siteName = 'LUCENTIQUE 古籍藏';
+const ogType = type === 'article' ? 'article' : 'website';
+---
+
+<title>{title} — {siteName}</title>
+<meta name="description" content={description || `${siteName} — 古籍收藏与审美分享`} />
+
+<link rel="canonical" href={fullUrl} />
+
+<meta property="og:title" content={`${title} — ${siteName}`} />
+<meta property="og:type" content={ogType} />
+{fullUrl && <meta property="og:url" content={fullUrl} />}
+{description && <meta property="og:description" content={description} />}
+{fullImage && <meta property="og:image" content={fullImage} />}
+<meta property="og:site_name" content={siteName} />
+{publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
+{updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
+{tags?.map(tag => <meta property="article:tag" content={tag} />)}
+
+<meta name="twitter:card" content={fullImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={`${title} — ${siteName}`} />
+{description && <meta name="twitter:description" content={description} />}
+{fullImage && <meta name="twitter:image" content={fullImage} />}
