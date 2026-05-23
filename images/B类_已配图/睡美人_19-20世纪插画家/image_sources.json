@@ -1,0 +1,82 @@
+[
+  {
+    "id": "01_gustave_dore_1867",
+    "artist": "Gustave Dore",
+    "life_dates": "1832-1883",
+    "work": "La Belle au Bois Dormant, from Les Contes de Perrault",
+    "approx_year": "1867",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/01_gustave_dore_sleeping_beauty.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/Category:Sleeping_Beauty_(Gustave_Dor%C3%A9)",
+    "download_url_used": "https://commons.wikimedia.org/wiki/Special:Redirect/file/La%20Belle%20au%20Bois%20Dormant%20-%20first%20of%20six%20engravings%20by%20Gustave%20Dor%C3%A9.jpg"
+  },
+  {
+    "id": "02_walter_crane_1875",
+    "artist": "Walter Crane",
+    "life_dates": "1845-1915",
+    "work": "The Sleeping Beauty",
+    "approx_year": "1875/1876; later republished",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/02_walter_crane_sleeping_beauty.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/Category:The_Sleeping_Beauty_(Walter_Crane)",
+    "download_url_used": "https://commons.wikimedia.org/wiki/Special:Redirect/file/WalterCrane%2C%20The%20Sleeping%20Beauty-07.jpg"
+  },
+  {
+    "id": "03_hj_ford_1889",
+    "artist": "Henry Justice Ford",
+    "life_dates": "1860-1941",
+    "work": "Beauty Awakened, The Sleeping Beauty in the Wood, from The Blue Fairy Book",
+    "approx_year": "1889",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/03_hj_ford_beauty_awakened.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/Category:The_Sleeping_Beauty_in_the_Wood_(Lang)",
+    "download_url_used": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Beauty%20Awakened%20%28The%20Sleeping%20Beauty%20in%20the%20Wood%29%20%28HJ%20Ford%29.jpg"
+  },
+  {
+    "id": "04_edmund_dulac_1910",
+    "artist": "Edmund Dulac",
+    "life_dates": "1882-1953",
+    "work": "The Sleeping Beauty and Other Fairy Tales from the Old French",
+    "approx_year": "1910",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/04_edmund_dulac_sleeping_beauty.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Edmund_Dulac_Sleeping_Beauty.jpg",
+    "download_url_used": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Edmund_Dulac_Sleeping_Beauty.jpg"
+  },
+  {
+    "id": "05_warwick_goble_1913",
+    "artist": "Warwick Goble",
+    "life_dates": "1862-1943",
+    "work": "The Fairy Book, edited by Dinah Maria Mulock Craik",
+    "approx_year": "1913",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/05_warwick_goble_sleeping_beauty.jpg",
+    "source_page": "https://gutenberg.ca/ebooks/craikd-fairybook/craikd-fairybook-00-h-dir/craikd-fairybook-00-h.html",
+    "download_url_used": "https://gutenberg.ca/ebooks/craikd-fairybook/craikd-fairybook-00-h-dir/images/fp006.jpg"
+  },
+  {
+    "id": "06_arthur_rackham_1920",
+    "artist": "Arthur Rackham",
+    "life_dates": "1867-1939",
+    "work": "The Sleeping Beauty",
+    "approx_year": "1920",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/06_arthur_rackham_sleeping_beauty.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/Category:Arthur_Rackham%27s_illustrations_of_Sleeping_Beauty_(1920)",
+    "download_url_used": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Arthur%20Rackham%20Sleeping%20Beauty%2015.jpg"
+  },
+  {
+    "id": "07_jennie_harbour_1921",
+    "artist": "Jennie Harbour",
+    "life_dates": "1893-1959",
+    "work": "My Book of Favourite Fairy Tales",
+    "approx_year": "1921",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/07_jennie_harbour_sleeping_beauty.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Sleeping_Beauty_by_Harbour.jpg",
+    "download_url_used": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sleeping_Beauty_by_Harbour.jpg"
+  },
+  {
+    "id": "08_w_heath_robinson_1921",
+    "artist": "W. Heath Robinson",
+    "life_dates": "1872-1944",
+    "work": "Old-Time Stories by Charles Perrault",
+    "approx_year": "1921",
+    "local_path": "/private/tmp/Sleeping_Beauty_Illustrators_20260509/images/08_w_heath_robinson_sleeping_beauty.png",
+    "source_page": "https://commons.wikimedia.org/wiki/Category:Old_time_stories_(Perrault,_Robinson)/The_Sleeping_Beauty_in_the_Wood",
+    "download_url_used": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Page%20010%20of%20Old%20time%20stories%20%28Perrault%2C%20Robinson%29.png"
+  }
+]
