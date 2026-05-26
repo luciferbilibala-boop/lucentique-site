@@ -5,12 +5,34 @@ interface Props {
   section: 'a' | 'b';
   title: string;
   description?: string;
+  pageTitle?: string;
+  pageDescription?: string;
+  pageImage?: string;
+  pageUrl?: string;
+  pageType?: 'article' | 'book' | 'website';
+  jsonLd?: Record<string, any>;
 }
 
-const { section, title, description } = Astro.props;
+const {
+  section,
+  title,
+  description,
+  pageTitle,
+  pageDescription,
+  pageImage,
+  pageUrl,
+  pageType,
+  jsonLd,
+} = Astro.props;
 ---
 
-<Page>
+<Page
+  pageTitle={pageTitle || title}
+  pageDescription={pageDescription || description}
+  pageImage={pageImage}
+  pageUrl={pageUrl}
+  pageType={pageType || 'website'}
+>
   <div class="container">
     <header class="list-header">
       <h1>{title}</h1>
@@ -20,6 +42,8 @@ const { section, title, description } = Astro.props;
       <slot />
     </div>
   </div>
+
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>}
 </Page>
 
 <style>

@@ -2,6 +2,7 @@
 import Page from './Page.astro';
 import ImageGallery from '../components/ImageGallery.astro';
 import JsonLd from '../components/JsonLd.astro';
+import InquiryBlock from '../components/InquiryBlock.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -24,7 +25,7 @@ const pageDesc = data.enDescription || data.description;
 <Page
   pageTitle={data.title}
   pageDescription={pageDesc}
-  pageImage={data.cover ? `${base}${data.cover.replace(/^\//, '')}` : undefined}
+  pageImage={data.cover}
   pageUrl={`/${section}/${entry.id}/`}
   pageType={section === 'a' ? 'book' : 'article'}
   publishedAt={data.date}
@@ -66,11 +67,15 @@ const pageDesc = data.enDescription || data.description;
           <ImageGallery images={galleryImages} />
         </>
       )}
+
+      {section === 'a' && data.availability && (
+        <InquiryBlock availability={data.availability} />
+      )}
     </div>
   </article>
-</Page>
 
-<JsonLd section={section} entry={entry} />
+  <JsonLd section={section} entry={entry} />
+</Page>
 
 <style>
   .article-header {

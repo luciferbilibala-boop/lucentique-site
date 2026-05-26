@@ -28,6 +28,7 @@ const baseSchema = z.object({
   period: z.string().optional(),
   designers: z.array(z.string()).optional(),
   canonicalURL: z.string().optional(),
+  availability: z.enum(['在售', '已售', '展示中']).optional(),
 });
 
 const aClass = defineCollection({

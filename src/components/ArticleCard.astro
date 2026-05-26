@@ -9,6 +9,7 @@ interface Props {
 const { entry, section } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
 const hasCover = !!entry.data.cover;
+const availability = 'availability' in entry.data ? entry.data.availability as string | undefined : undefined;
 ---
 
 <article class="card" class:list={{ 'card--text-only': !hasCover }}>
@@ -16,6 +17,11 @@ const hasCover = !!entry.data.cover;
     {hasCover && (
       <div class="card-image">
         <img src={`${base}${entry.data.cover.replace(/^\//, '')}`} alt={entry.data.coverAltText || entry.data.title} loading="lazy" />
+        {availability && (
+          <span class="card-badge" class:list={{ 'badge--available': availability === '在售', 'badge--sold': availability === '已售' }}>
+            {availability}
+          </span>
+        )}
       </div>
     )}
     <div class="card-body">
@@ -58,6 +64,7 @@ const hasCover = !!entry.data.cover;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     background: var(--color-bg);
+    position: relative;
   }
 
   .card-image img {
@@ -99,5 +106,25 @@ const hasCover = !!entry.data.cover;
     margin-top: 0.5rem;
     margin-bottom: 0;
     line-height: 1.5;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    color: #fff;
+  }
+
+  .badge--available {
+    background: #6b9b5f;
+  }
+
+  .badge--sold {
+    background: var(--color-text-light);
   }
 </style>

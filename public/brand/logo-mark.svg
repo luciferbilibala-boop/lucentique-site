@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 86" role="img" aria-label="LUCENTIQUE logo mark">
+  <g fill="none" stroke="#b8b3a9" stroke-width="2.2" stroke-linejoin="round">
+    <path d="M15 40A33 33 0 0 1 81 40" fill="#fafaf8"/>
+    <path d="M15 40H33V78H15z" fill="#d9b13f" stroke="#b38b21"/>
+    <path d="M63 40H81V78H63z" fill="#fafaf8"/>
+    <path d="M33 40H63V78H33z" fill="#e1bd48" stroke="#b38b21"/>
+  </g>
+  <circle cx="48" cy="34" r="17" fill="#e1bd48" stroke="#b38b21" stroke-width="1.7"/>
+  <g stroke="#9b8b5a" stroke-width="1.2">
+    <path d="M33 34H63"/>
+    <path d="M34 38H62"/>
+    <path d="M36 42H60"/>
+    <path d="M38 46H58"/>
+  </g>
+  <g fill="#e1bd48" stroke="#b38b21" stroke-width="1.5">
+    <rect x="40" y="58" width="16" height="7"/>
+    <rect x="34" y="70" width="28" height="8"/>
+  </g>
+</svg>

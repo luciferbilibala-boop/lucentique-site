@@ -3,6 +3,7 @@ title: "百年前最浪漫的决斗：百合🆚玫瑰"
 date: 2026-05-04
 description: "《Queen Summer, or The Tourney of the Lily & the Rose》，Walter Crane 1891年作品，chromolithography套色石版印刷"
 enDescription: "Queen Summer, or The Tourney of the Lily & the Rose — an 1891 picture book by Walter Crane, printed in chromolithography by Cassell & Company of London. The lily and the rose face off as white and red knights in a medieval-style tournament, rendered in Crane's signature flat-color illustrative style with Gothic typography and integrated plant-motif borders."
+availability: "在售"
 tags: ["Queen Summer", "Walter Crane", "古籍藏", "维多利亚童书", "英文古籍", "Chromolithography", "插画收藏", "Arts and Crafts"]
 period: "Victorian era, 1891"
 designers:

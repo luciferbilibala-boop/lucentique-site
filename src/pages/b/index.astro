@@ -34,8 +34,11 @@ const listJsonLd = {
   section="b"
   title="少女心中有一个老灵魂"
   description="分享艺术、书籍、审美与古典生活方式。"
+  pageTitle="少女心中有一个老灵魂"
+  pageDescription="分享艺术、书籍、审美与古典生活方式。"
+  pageUrl="/b/"
+  pageType="website"
+  jsonLd={listJsonLd}
 >
   {entries.map((entry) => <ArticleCard entry={entry} section="b" />)}
 </List>
-
-<script type="application/ld+json" set:html={JSON.stringify(listJsonLd)}></script>

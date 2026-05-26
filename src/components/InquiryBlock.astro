@@ -1,0 +1,118 @@
+---
+interface Props {
+  availability?: '在售' | '已售' | '展示中';
+}
+
+const { availability } = Astro.props;
+const isAvailable = availability === '在售';
+---
+
+<div class="inquiry-block">
+  <div class="inquiry-status">
+    <span class="inquiry-dot" class:list={{ 'dot--available': isAvailable, 'dot--sold': !isAvailable }} />
+    <span class="inquiry-label">{availability || '展示中'}</span>
+  </div>
+
+  {
+    isAvailable && (
+      <div class="inquiry-body">
+        <p class="inquiry-text">对这本书感兴趣，可联系：</p>
+        <div class="inquiry-contacts">
+          <div class="inquiry-contact">
+            <span class="contact-label">微信</span>
+            <span class="contact-value">LLUCENTIQUE</span>
+          </div>
+          <div class="inquiry-contact">
+            <span class="contact-label">小红书</span>
+            <span class="contact-value">oldbookfans</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    availability === '已售' && (
+      <p class="inquiry-sold-text">此书已售出，如有类似藏品在寻可联系。</p>
+    )
+  }
+</div>
+
+<style>
+  .inquiry-block {
+    margin-top: var(--space-xl);
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    max-width: var(--max-width);
+  }
+
+  .inquiry-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .inquiry-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot--available {
+    background: #6b9b5f;
+  }
+
+  .dot--sold {
+    background: var(--color-text-light);
+  }
+
+  .inquiry-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .inquiry-body {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .inquiry-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .inquiry-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .inquiry-contact {
+    font-size: 0.9rem;
+  }
+
+  .contact-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    letter-spacing: 0.04em;
+    margin-right: 0.5rem;
+  }
+
+  .contact-value {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    letter-spacing: 0.02em;
+  }
+
+  .inquiry-sold-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+</style>

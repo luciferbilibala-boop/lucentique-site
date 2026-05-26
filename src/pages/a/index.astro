@@ -33,8 +33,15 @@ const listJsonLd = {
 };
 ---
 
-<List section="a" title="古籍藏品" description="LUCENTIQUE 古籍收藏与在售藏品。">
+<List
+  section="a"
+  title="古籍藏品"
+  description="LUCENTIQUE 古籍收藏与在售藏品。"
+  pageTitle="古籍藏品"
+  pageDescription="LUCENTIQUE 古籍收藏与在售藏品。"
+  pageUrl="/a/"
+  pageType="website"
+  jsonLd={listJsonLd}
+>
   {entries.map((entry) => <ArticleCard entry={entry} section="a" />)}
 </List>
-
-<script type="application/ld+json" set:html={JSON.stringify(listJsonLd)}></script>
